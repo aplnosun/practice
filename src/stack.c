@@ -22,7 +22,7 @@ int deleteStack(STACK **head)
 	STACK *target;
 
 	while(*head) {
-		printf("Stack data is [%d]\n", (int)target->data);
+		printf("Stack data is [%d]\n", (int)(*head)->data);
 		target = (*head)->next;
 		free(*head);
 		*head = target;
