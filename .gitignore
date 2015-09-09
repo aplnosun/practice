@@ -1,0 +1,50 @@
+# a comment - this line is ignored. 
+
+# Object files
+*.o
+*.ko
+*.obj
+*.elf
+
+# Precompiled Headers
+*.gch
+*.pch
+
+# Libraries
+*.lib
+*.a
+*.la
+*.lo
+
+# Shared objects (inc. Windows DLLs)
+*.dll
+*.so
+*.so.*
+*.dylib
+
+# Executables
+*.exe
+*.out
+*.app
+*.i*86
+*.x86_64
+*.hex
+
+# Debug files
+*.dSYM/
+
+# 확장자가 .o .a인 파일 무시한다.
+*.[oa]
+# lib*.a는 무시하지 않는다. 
+!lib*.a
+*.swp
+*~
+*history
+*/DDL/
+*.lis
+*.zip
+*gz
+
+# bin/ 디렉토리에 있는 모든 파일은 무시한다
+bin/
+
