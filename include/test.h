@@ -21,3 +21,6 @@
 
 /***<FUNCTION PROTOTYPE>*******************************************************/
 /********** stack.c **********/
+int testStack();
+int testTail();
+void wait(void);
