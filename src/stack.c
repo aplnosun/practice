@@ -1,15 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
-
-typedef struct Stack{
-    struct Stack *next;
-    void *data;
-}STACK;
-
-int createStack(STACK **head);
-int deleteStack(STACK **head);
-int push(STACK **head, void *data);
-int pop (STACK **head, void **data);
+#include "test.h"
 
 int createStack(STACK **head)
 {
@@ -22,16 +13,17 @@ int deleteStack(STACK **head)
 	STACK *target;
 
 	while(*head) {
-		printf("Stack data is [%d]\n", (int)(*head)->data);
+		printf("[%d]->", (*head)->data);
 		target = (*head)->next;
 		free(*head);
 		*head = target;
 	}
+	printf("[Null]");
 
 	return 0;
 }
 
-int push(STACK **head, void *data)
+int push(STACK **head, int data)
 {
 	STACK *newData;
 
@@ -47,12 +39,13 @@ int push(STACK **head, void *data)
 	return 0;
 }
 
-int pop (STACK **head, void **data)
+int pop (STACK **head, int *data)
 {
 	STACK *target;
 
-	if (!(target = *head))
+	if (!(target = *head)) {
 		return -1;
+	}
 
 	*data = target->data;
 	*head = target->next;

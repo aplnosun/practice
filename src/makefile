@@ -15,14 +15,14 @@ LIBOBJ  = stack.o test.o
 .c.o :
 		$(CC) $(CFLAGS) $<
 
-all:$(EXEPROJ) 
+all: $(EXEPROJ) 
 
 $(EXEPROJ): $(LIBOBJ)
 		$(CC) $(LFLAGS) -o $@ $(LIBOBJ) $(LDFLAGS)
 
-install:
-		mv $(EXEPROJ) $(PROJ_BIN)
+install: $(EXEPROJ)
+		mv $(EXEPROJ).exe $(PROJ_BIN)
 
-clean :
-		rm -f  $(EXEPROJ) *.o core
+clean:
+		rm -f  $(EXEPROJ).exe *.o core
 

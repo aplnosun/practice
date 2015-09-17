@@ -44,6 +44,7 @@
 *.lis
 *.zip
 *gz
+tags
 
 # bin/ 디렉토리에 있는 모든 파일은 무시한다
 bin/

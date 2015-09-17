@@ -18,9 +18,15 @@
 
 
 /***<STRUCTURE>****************************************************************/
+typedef struct Stack{
+    struct Stack *next;
+    int           data;
+}STACK;
 
 /***<FUNCTION PROTOTYPE>*******************************************************/
 /********** stack.c **********/
-int testStack();
-int testTail();
-void wait(void);
+int createStack(STACK **head);
+int deleteStack(STACK **head);
+int push(STACK **head, int data);
+int pop (STACK **head, int *data);
+
