@@ -10,9 +10,13 @@
 /***<DEFINE CONSTANTS>*********************************************************/
 #define SZ_MAX      150
 
+/***<VARIABLES>****************************************************************/
+
+/***<FUNCTION>****************************************************************/
 int testStack();
 int testTail();
 void wait(void);
+
 /******************************************************************************
  * Function     : main
  * Description  :
@@ -74,7 +78,7 @@ int main(int argc, char *argv[])
 
 int testStack()
 {
-    STACK *head;
+    Stack *head;
     char  input[10] = {0,};
 
     char *testInput;
@@ -138,9 +142,57 @@ int testStack()
 
 int testTail()
 {
-    printf("<<<<< Tail >>>>>\n");
-    wait();
+    Element *elem;
 
+    char  input[10] = {0,};
+    int testInput;
+
+    printf("\n<<<<< Tail >>>>>\n");
+
+    while(1) {
+        printf("****************************\n");
+        printf("*       1. delete          *\n");
+        printf("*       2. insertAfter     *\n");
+        printf("****************************\n");
+        printf("select number(q:quit): ");
+
+        scanf("%s", input);
+
+        if (input[0] == 'q' || input[0] == 'Q') {
+            printf("\n");
+            break;
+        }
+
+        switch(input[0]) {
+            case '1':
+                elem = (Element *)malloc(sizeof(char)*100);
+                memset(elem, 0x00, sizeof(sizeof(char)*100));
+                printf("Target address: ");
+                scanf("%s", (char *)elem);
+                if (delete(elem)) {
+                    return -1;
+                }
+                printf("\n");
+                break;
+            case '2':
+                elem = (Element *)malloc(sizeof(char)*100);
+                memset(elem, 0x00, sizeof(sizeof(char)*100));
+                printf("Target address: ");
+                scanf("%s", (char *)elem);
+                printf("Enter the push data: ");
+                scanf("%d", &testInput);
+                if (insertAfter(elem, testInput)) {
+                    wait();
+                    return -1;
+                }
+                break;
+            default:
+                printf("wrong testInput data!!!\n");
+                wait();
+                break;
+        }
+        printf("\n<<<<< Tail >>>>>\n");
+    }
     return 0;
 }
 

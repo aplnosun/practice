@@ -8,7 +8,7 @@ LFLAGS  = -g -W -Wall -I$(PROJ_INC)
 LDFLAGS = -L$(PROJ_LIB)
 
 EXEPROJ = testMain
-LIBOBJ  = stack.o test.o
+LIBOBJ  = test.o stack.o tail.o
 
 .SUFFIXES : .c .o
 

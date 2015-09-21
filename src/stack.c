@@ -2,15 +2,15 @@
 #include <stdlib.h>
 #include "test.h"
 
-int createStack(STACK **head)
+int createStack(Stack **head)
 {
     *head = NULL;
     return 0;
 }
 
-int deleteStack(STACK **head)
+int deleteStack(Stack **head)
 {
-    STACK *target;
+    Stack *target;
 
     while(*head) {
         printf("[%s]->", (char *)(*head)->data);
@@ -23,11 +23,11 @@ int deleteStack(STACK **head)
     return 0;
 }
 
-int push(STACK **head, void *data)
+int push(Stack **head, void *data)
 {
-    STACK *newData;
+    Stack *newData;
 
-    newData = (STACK *)malloc(sizeof(STACK));
+    newData = (Stack *)malloc(sizeof(Stack));
 
     if (!newData)
         return -1;
@@ -39,9 +39,9 @@ int push(STACK **head, void *data)
     return 0;
 }
 
-int pop (STACK **head, void **data)
+int pop (Stack **head, void **data)
 {
-    STACK *target;
+    Stack *target;
 
     if (!(target = *head)) {
         return -1;

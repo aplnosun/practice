@@ -16,16 +16,24 @@
 
 /***<VARIABLES>****************************************************************/
 
-
 /***<STRUCTURE>****************************************************************/
 typedef struct Stack{
-    struct Stack *next;
-    void         *data;
-}STACK;
+    struct Stack	*next;
+    void	*data;
+}Stack;
+
+typedef struct Element{
+    struct Element *next;
+    int     data;
+}Element;
 
 /***<FUNCTION PROTOTYPE>*******************************************************/
 /********** stack.c **********/
-int createStack(STACK **head);
-int deleteStack(STACK **head);
-int push(STACK **head, void *data);
-int pop (STACK **head, void **data);
+int createStack(Stack **head);
+int deleteStack(Stack **head);
+int push(Stack **head, void *data);
+int pop (Stack **head, void **data);
+
+/********** tail.c **********/
+int delete(Element *elem);
+int insertAfter(Element *elem, int data);
