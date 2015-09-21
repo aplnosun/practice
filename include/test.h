@@ -20,13 +20,12 @@
 /***<STRUCTURE>****************************************************************/
 typedef struct Stack{
     struct Stack *next;
-    int           data;
+    void         *data;
 }STACK;
 
 /***<FUNCTION PROTOTYPE>*******************************************************/
 /********** stack.c **********/
 int createStack(STACK **head);
 int deleteStack(STACK **head);
-int push(STACK **head, int data);
-int pop (STACK **head, int *data);
-
+int push(STACK **head, void *data);
+int pop (STACK **head, void **data);

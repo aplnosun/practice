@@ -24,7 +24,7 @@ void wait(void);
  ******************************************************************************/
 int main(int argc, char *argv[])
 {
-	int input = 0;
+    char input[10] = {0,};
 
     printf("argc[%d], argv[%s]\n", argc, *argv);
 
@@ -38,29 +38,29 @@ int main(int argc, char *argv[])
         printf("*       1. stack       *\n");
         printf("*       2. tail        *\n");
         printf("************************\n");
-        printf("select number(0:quit): ");
+        printf("select number(q:quit): ");
 
-        scanf("%d", &input);
+        scanf("%s", input);
 
-        if (input == 0) {
+        if (input[0] == 'q' || input[0] == 'Q') {
             printf("bye!!!");
             break;
         }
 
-        switch(input) {
-            case 1:
+        switch(input[0]) {
+            case '1':
                 if (testStack()) {
-					printf("Error!!!");
-					wait();
-					return -1;
-				}
+                    printf("Error!!!");
+                    wait();
+                    return -1;
+                }
                 break;
-            case 2:
+            case '2':
                 if (testTail()) {
-					printf("Error!!!");
-					wait();
-					return -1;
-				}
+                    printf("Error!!!");
+                    wait();
+                    return -1;
+                }
                 break;
             default:
                 printf("wrong input data!!!\n");
@@ -74,13 +74,15 @@ int main(int argc, char *argv[])
 
 int testStack()
 {
-	STACK *head;
-	int input = 0;
-	int output = 0;
+    STACK *head;
+    char  input[10] = {0,};
 
-	printf("\n<<<<< Stack >>>>>\n");
+    char *testInput;
+    char *testOutput;
 
-	createStack(&head);
+    printf("\n<<<<< Stack >>>>>\n");
+
+    createStack(&head);
 
     while(1) {
         printf("************************\n");
@@ -88,43 +90,47 @@ int testStack()
         printf("*       2. pop         *\n");
         printf("*       3. delete      *\n");
         printf("************************\n");
-        printf("select number(0:quit): ");
+        printf("select number(q:quit): ");
 
-        scanf("%d", &input);
+        scanf("%s", input);
 
-        if (input == 0) {
-			printf("\n");
+        if (input[0] == 'q' || input[0] == 'Q') {
+            printf("\n");
             break;
         }
 
-        switch(input) {
-            case 1:
+        switch(input[0]) {
+            case '1':
+                testInput = (char *)malloc(sizeof(char)*100);
+                memset(testInput, 0x00, sizeof(sizeof(char)*100));
+
                 printf("Enter the push data: ");
-                scanf("%d", &input);
-				if (push(&head, input)) {
-					return -1;
-				}
+                scanf("%s", testInput);
+                if (push(&head, testInput)) {
+                    return -1;
+                }
                 break;
-            case 2:
-				if (pop(&head, &output)) {
-					printf("data is none!!\n");
-					break;
-				}
-                printf("pop data: %d\n", output);
+            case '2':
+                testOutput = (char *)calloc(100, sizeof(char));
+                if (pop(&head, (void *)&testOutput)) {
+                    printf("data is none!!\n");
+                    break;
+                }
+                printf("pop data: %s\n", testOutput);
                 break;
-            case 3:
+            case '3':
                 printf("view: ");
-				if (deleteStack(&head)) {
-					return -1;
-				}
+                if (deleteStack(&head)) {
+                    return -1;
+                }
                 printf("\n");
                 break;
             default:
-                printf("wrong input data!!!\n");
+                printf("wrong testInput data!!!\n");
                 wait();
                 break;
         }
-		printf("\n<<<<< Stack >>>>>\n");
+        printf("\n<<<<< Stack >>>>>\n");
     }
 
     return 0;
