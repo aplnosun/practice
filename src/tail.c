@@ -23,11 +23,13 @@ int delete(Element *elem)
 
     curPos = head;
 
-    while(curPos->next) {
+    while(!(curPos->next)) {
         if (elem == curPos->next) {
             curPos->next = elem->next;
             free(elem);
-            break;
+            if (curPos == 0x00)
+                tail = curPos;
+            return 0;
         }
         else {
             curPos = curPos->next;
@@ -45,10 +47,31 @@ int delete(Element *elem)
 
 int insertAfter(Element *elem, int data)
 {
-    if (head == 0) {
-        head = elem;
-        elem->data = data;
+    Element *curPos = head->next;
+    Element *newElem = (Element *)malloc(sizeof(Element));
+    newElem->data = data;
+
+    if (elem == 0) {
+        head = newElem;
+        tail = newElem;
+        return 0;
     }
 
-    return 0;
+    if (elem == head) {
+        elem->next = head->next;
+        head->next = elem;
+    }
+
+    while(!curPos) {
+        if (elem == curPos) {
+            elem->next   = curPos->next;
+            curPos->next = elem;
+
+            if (elem == tail)
+                tail = elem->next;
+        }
+        curPos = curPos->next;
+    }
+
+    return -1;
 }

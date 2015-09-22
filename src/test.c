@@ -45,6 +45,7 @@ int main(int argc, char *argv[])
         printf("select number(q:quit): ");
 
         scanf("%s", input);
+		input[10] = 0x00;
 
         if (input[0] == 'q' || input[0] == 'Q') {
             printf("bye!!!");
@@ -97,6 +98,7 @@ int testStack()
         printf("select number(q:quit): ");
 
         scanf("%s", input);
+		input[10] = 0x00;
 
         if (input[0] == 'q' || input[0] == 'Q') {
             printf("\n");
@@ -110,6 +112,7 @@ int testStack()
 
                 printf("Enter the push data: ");
                 scanf("%s", testInput);
+				testInput[100] = 0x00;
                 if (push(&head, testInput)) {
                     return -1;
                 }
@@ -143,6 +146,7 @@ int testStack()
 int testTail()
 {
     Element *elem;
+	extern Element *head;
 
     char  input[10] = {0,};
     int testInput;
@@ -151,12 +155,13 @@ int testTail()
 
     while(1) {
         printf("****************************\n");
-        printf("*       1. delete          *\n");
-        printf("*       2. insertAfter     *\n");
+        printf("*       1. insertAfter     *\n");
+        printf("*       2. delete          *\n");
         printf("****************************\n");
         printf("select number(q:quit): ");
 
         scanf("%s", input);
+		input[10] = 0x00;
 
         if (input[0] == 'q' || input[0] == 'Q') {
             printf("\n");
@@ -165,6 +170,23 @@ int testTail()
 
         switch(input[0]) {
             case '1':
+				elem = head;
+				while(!elem) {
+					printf("[%d]->", (int)elem);
+					elem = elem->next;
+				}
+				printf("[Null]\n");
+
+                printf("Enter the target address: ");
+                scanf("%d", (int *)elem);
+                printf("Enter the integer data: ");
+                scanf("%d", &testInput);
+                if (insertAfter(elem, testInput)) {
+                    wait();
+                    return -1;
+                }
+                break;
+            case '2':
                 elem = (Element *)malloc(sizeof(char)*100);
                 memset(elem, 0x00, sizeof(sizeof(char)*100));
                 printf("Target address: ");
@@ -173,18 +195,6 @@ int testTail()
                     return -1;
                 }
                 printf("\n");
-                break;
-            case '2':
-                elem = (Element *)malloc(sizeof(char)*100);
-                memset(elem, 0x00, sizeof(sizeof(char)*100));
-                printf("Target address: ");
-                scanf("%s", (char *)elem);
-                printf("Enter the push data: ");
-                scanf("%d", &testInput);
-                if (insertAfter(elem, testInput)) {
-                    wait();
-                    return -1;
-                }
                 break;
             default:
                 printf("wrong testInput data!!!\n");
